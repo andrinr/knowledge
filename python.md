@@ -2,21 +2,21 @@
 
 ## Syntax and best practices
 
-- **Don’t** use camel case, use snake case i.e. ``this_is_a_function``
+- **Don’t** use camel case, use snake case, for example: ``this_is_a_function``
 - Two lines of spacing before each function
 
 #### for loops
 
 A simple for loop:
 
-````pyt
+````python
 for i in range(100):
 	# do stuff
 ````
 
 #### functions
 
-````py
+````python
 def function():
 	# do stuff
 	return
@@ -30,8 +30,32 @@ def function():
 
 ### Arrays
 
-`````py
- np.linspace(start, end, count)
+`````python
+# generate linear array 
+np.linspace(start, end, count)
+
+# 2D Array
+np.array([1,2,3],[4,5,6],[7,8,9])
+
+# Array shape
+array.shape
+
+# Init array of any shape with zeros
+numpy.zeros((x,y,z))
+
+# Access entry in n-dim array
+array[x,y,z]
+
+# Negative indexing, can be used to select n last elements
+# last element
+array[-1]
+# last n elements
+array[-n]
+
+# Slicing
+array[start:end]
+# With steps
+array[start:end,step]
 `````
 
 
@@ -46,9 +70,15 @@ def function():
 
 ### Subplots
 
-````py
+````python
 fig, axs = plt.subplots(2, 2)
 axs[1,1].scatter(...)
+
+# Axis title
+axs[1,1].set_title("title")
+
+# Add spacing between subplots
+fig.tight_layout(pad=3.0)
 ````
 
 ### Animation

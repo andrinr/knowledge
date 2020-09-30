@@ -73,7 +73,7 @@ wc -l <filename>
 
 ### Variables
 
-````
+````bash
 # Set a variable
 VARNAME=123
 
