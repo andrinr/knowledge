@@ -1,6 +1,6 @@
 # Python
 
-### Syntax and best practices
+## Syntax and best practices
 
 - **Don’t** use camel case, use snake case i.e. ``this_is_a_function``
 - Two lines of spacing before each function
@@ -21,6 +21,10 @@ def function():
 	# do stuff
 	return
 ````
+
+
+
+
 
 ## Numpy
 
@@ -53,17 +57,21 @@ axs[1,1].scatter(...)
 FuncAnimation(fig, update, frames=[...], interval=X, repeat=True)
 ````
 
-update function is called in each frame. Basically you want to plot before calling the FuncAnimation and then alter the plot or its data in the update function. For example one can do:
-
-
-
-
+``update`` function is called in each frame. Basically you want to plot before calling the ``FuncAnimation`` and then alter the plot or its data in the update function. For example one can do:
 
 
 
 
 
 ## Pandas
+
+
+
+
+
+## Seaborn
+
+
 
 
 
