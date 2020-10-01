@@ -56,6 +56,9 @@ array[-n]
 array[start:end]
 # With steps
 array[start:end,step]
+
+# Flatten array i.e. [[1,2],[3,4]] => [1,2,3,4]
+array.flatten()
 `````
 
 
