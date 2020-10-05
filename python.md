@@ -92,6 +92,13 @@ FuncAnimation(fig, update, frames=[...], interval=X, repeat=True)
 
 ``update`` function is called in each frame. Basically you want to plot before calling the ``FuncAnimation`` and then alter the plot or its data in the update function. For example one can do:
 
+### Pixel Plot
+
+````python
+# where data is a 2D np array
+plt.imshow(data)
+````
+
 
 
 
@@ -103,6 +110,14 @@ FuncAnimation(fig, update, frames=[...], interval=X, repeat=True)
 
 
 ## Seaborn
+
+
+
+## PIP
+
+TO get pip dependencies in a text file:
+
+````pip freeze > requirements.txt````
 
 
 
