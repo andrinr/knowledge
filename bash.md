@@ -144,5 +144,13 @@ ce
 
 
 
+## PM2
+
+````bash
+# List all running processes
+pm2 list
+
+````
+
 
 

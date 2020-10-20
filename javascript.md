@@ -1,4 +1,4 @@
-# javascript / typescript
+# js / ts
 
 ## Hash Maps
 
@@ -33,6 +33,16 @@ run(){
     window.requestAnimationFrame(this.run);
 }
 
+````
+
+### Imports
+
+Some packages cannot be imported the regular way because they depend on the ``document`` element. They then need to be imported inline. 
+
+````javascript
+const {default: Isotope} = await import('isotope-layout');
+// With rollup make sure to set this flag to true
+inlineDynamicImports: true
 ````
 
 

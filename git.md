@@ -48,3 +48,18 @@ git checkout <branchname>
 
 
 
+## Add Files to .gitignore and remove them from remote
+
+````bash
+# Add statement to .gitignore i.e.
+.idea
+
+# Check file out from master
+git checkout master -- .gitignore
+
+# Remove file from tree
+git rm --cached -r .idea
+````
+
+
+

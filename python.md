@@ -82,6 +82,9 @@ axs[1,1].set_title("title")
 
 # Add spacing between subplots
 fig.tight_layout(pad=3.0)
+
+# Legends
+axs[1].legend(['Euler', 'Kutta'], loc=1)
 ````
 
 ### Animation
