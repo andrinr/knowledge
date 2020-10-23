@@ -85,6 +85,15 @@ fig.tight_layout(pad=3.0)
 
 # Legends
 axs[1].legend(['Euler', 'Kutta'], loc=1)
+
+# Aspect ratio
+axs[1].set_box_aspect(1)
+
+# limits
+axs[1].set_ylim(-3, 3)
+
+# axes
+axs[1].set_xlabel('q')
 ````
 
 ### Animation
