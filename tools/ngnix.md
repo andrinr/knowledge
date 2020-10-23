@@ -22,18 +22,15 @@ Available applications:
 
 If the output is inactive, try this:
 
-````
+````bash
 sudo ufw enable
 sudo ufw default deny
-
-And I then do:
-
 sudo iptables -L
 ````
 
 Allow http and https connections:
 
-````
+````bash
 sudo ufw allow 'Nginx Full'
 ````
 
