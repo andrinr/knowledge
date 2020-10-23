@@ -22,6 +22,9 @@ ls
 ls -A
 # list files with certain ending <end>
 ls *.<end>
+
+# current linux version
+hostnamectl
 ````
 
 ```bash
@@ -86,10 +89,6 @@ $VARNAME
 # Test varibale
 echo $VARNAME
 ````
-
-
-
-## .sh Shell scripting
 
 
 

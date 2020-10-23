@@ -46,18 +46,3 @@ inlineDynamicImports: true
 ````
 
 
-
-## VUE
-
-
-
-## REACT
-
-
-
-## SVELTE
-
-
-
-
-
