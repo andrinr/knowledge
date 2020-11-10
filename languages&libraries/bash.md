@@ -142,19 +142,15 @@ y
 p
 # delete word, enter insert mode
 ce 
+# alt + nav, navigate and leave edit mode
+
 ````
 
+### Remapping
 
-
-## PM2
-
-````bash
-# List all running processes
-pm2 list
-
-# kill running processes
-pm2 kill
 ````
+# Commmon ESC remap
+:imap jk <Esc>
 
-
+````
 
