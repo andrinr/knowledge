@@ -63,3 +63,11 @@ git rm --cached -r .idea
 
 
 
+## Change remote branch url
+
+````bash
+git remote set-url origin <url>
+````
+
+
+

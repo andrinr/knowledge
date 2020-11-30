@@ -16,3 +16,28 @@ g++ -Wall -O -g file.cpp
 ./a.out
 ````
 
+
+
+## Pointers
+
+````c++
+a = 25;
+b = a; //store the value, b = 25
+c = &a; // store the adress of a, c is now a pointer, c=adress
+d = *c; // deference operator, now d = 25
+````
+
+``&`` is the “address of” operator
+
+``*`` is the “value of” operator
+
+````c++
+// Declaring a pointer
+type * name;
+````
+
+
+
+## Gnuplot
+
+​	
