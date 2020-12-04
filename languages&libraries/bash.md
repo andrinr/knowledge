@@ -49,8 +49,6 @@ ctrl + a, X
 ctrl + a, c
 ````
 
-
-
 ### Execution
 
 ````bash
@@ -148,9 +146,39 @@ ce
 
 ### Remapping
 
-````
+````bash
 # Commmon ESC remap
 :imap jk <Esc>
 
 ````
+
+## Remote display
+
+First launch XLaunch then open a WSL terminal or do it via Putty and enable X11 tunneling
+
+````bash
+# In WSL
+DISPLAY=localhost:0
+ssh -Y remote
+````
+
+
+
+## GNUPLOT
+
+````bash
+# startup
+gnuplot
+
+# scatterplot
+plot 'file.dat'
+
+# scatterplot with color lables
+plot 'file.dat' with points palette
+
+````
+
+
+
+
 

@@ -38,6 +38,17 @@ type * name;
 
 
 
-## Gnuplot
+## GNUplot
 
-​	
+````bash
+# startup
+gnuplot
+
+# scatterplot
+plot 'file.dat'
+
+
+````
+
+
+
