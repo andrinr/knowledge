@@ -12,18 +12,3 @@ for (<ItemType> item : List){
 ````
 
 
-
-## Processing
-
-### Structure
-
-````java
-void setup(){
-    
-}
-
-void draw(){
-    
-}
-````
-

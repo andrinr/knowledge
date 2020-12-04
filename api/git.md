@@ -68,6 +68,3 @@ git rm --cached -r .idea
 ````bash
 git remote set-url origin <url>
 ````
-
-
-
