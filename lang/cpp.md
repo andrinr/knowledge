@@ -2,14 +2,12 @@
 
 Header files are not required but recommended.
 
-## Compiling 
+## Compile & Run
 
 ````bash
 # Compilation, display warnings, optimize and add additional info
 g++ -Wall -O -g file.cpp 
 ````
-
-## Running
 
 ````bash
 # Simply run the produced .out file, usually a.out
@@ -66,3 +64,56 @@ This program will output:
 10
 0x7ffff654d2d8
 ````
+
+### Pointers and Arrays
+
+````c++
+#include <iostream>
+void func(int * value, int * arr){
+  std::cout << value << std::endl;
+  std::cout << *value << std::endl;
+  
+  *value += 10;
+  
+  std::cout << *value << std::endl;
+  std::cout << arr[0] << std::endl;
+}
+
+int main() {
+  int value = 10; 
+  int arr[2] = {2,4};
+  
+  func(&value, arr);
+  return 0;
+}
+
+````
+
+This program will output:
+
+````c++
+0x7ffd36763bac
+10
+20
+2
+````
+
+
+
+### Double pointers
+
+````c++
+int *pointer;
+int *doublePointer = &pointer;
+````
+
+TODO: Why on earth do we need double pointers?? 
+
+## Memory allocation
+
+````c++
+int var;
+int arr[100];
+
+````
+
