@@ -44,3 +44,15 @@ cudaMallocManaged(&data, N*sizeof(double));
 cudaFree(data);
 ````
 
+## Shared memory, global memory and unified memory
+
+
+
+## Atomic operators
+
+Can be used everywhere, where the memory is accessible. Guarantee race condition arithmetic operations.
+
+````c++
+atomicAdd(float * adress, int value);
+````
+

@@ -36,4 +36,33 @@ d = *c; // deference operator, now d = 25
 type * name;
 ````
 
+### Example
 
+````c++
+#include <iostream>
+int main() {
+  int * pointer;
+  std::cout << pointer << std::endl;
+  std::cout << &pointer << std::endl;
+  
+  int value = 10;
+  std::cout << value << std::endl;
+  std::cout << &value << std::endl;
+  
+  pointer = &value;
+  std::cout << *pointer << std::endl;
+  std::cout << &pointer << std::endl;
+  return 0;
+}
+````
+
+This program will output:
+
+````
+0
+0x7ffff654d2d8
+10
+0x7ffff654d2d4
+10
+0x7ffff654d2d8
+````
