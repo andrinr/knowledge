@@ -5,6 +5,9 @@
 ## Basics
 
 ````bash
+git config --global user.name "John Doe"
+git config --global user.email johndoe@example.com
+
 git status
 
 # add all changes to commit

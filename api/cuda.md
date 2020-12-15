@@ -37,14 +37,31 @@ int *data;
 # Allocated unified memory, accesible from CPU and GPU
 cudaMallocManaged(&data, N*sizeof(double));
 
-# Or allocate memory only on device memory, then data needs to be copied by hand?
-cudaMallocManaged(&data, N*sizeof(double));
+# Or handle data transfer manually which in most cases is adwised
+# host memory allocation
+int * h_data = (int*)malloc(N*sizeof(int));
+# Declare device data pointer
+int * d_data;
+# Use double pointer (!) to allocate device memory
+cudaMalloc(&d_data, N*sizeof(int))
+# <Initialize data on host here>
+# Copy data from host to device
+cudaMemcpy(d_data, h_data, N*sizeof(int), cudaMemcpyHostToDevice);
+# <Do calculations here>
+# Copy memory back from device to host
+cudaMemcpy(h_data, d_data, N*sizeof(int), cudaMemcpyDeviceToHost);
 
 # After finishing
 cudaFree(data);
 ````
 
 ## Shared memory, global memory and unified memory
+
+````c++
+
+````
+
+
 
 
 
