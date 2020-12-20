@@ -13,7 +13,7 @@ nvcc file.cu
 ./a.out
 ````
 
-## Declare a function
+## Device code
 
 ````c++
 __global__ void function(){
@@ -21,12 +21,35 @@ __global__ void function(){
 }
 ````
 
-## Get stride and id
+### Launch device code from host
+
+````c++
+function<<NBlocks, NThreads Per Block>>(int param);
+````
+
+Therefore given N elements we have:
+
+NBlocks = arbitrary
+
+NThreads = N / NBlocks
+
+### Kernel variables
 
 ````c++
 int index = threadIdx.x;
 int stride = blockDim.x;
 ````
+
+![Cuda Memory model](../img/cuda_blocks_threads.png "Cuda Memory Model")
+
+### Guidelines for Thread and Block numbers
+
+- Block numbers should always be a multiple of 32.
+- Look at hardware, decide from there
+- Look up number of active blocks and active threads
+- Blocks are distributed over the SM and the rest is put into a pipeline
+
+[dimensions - CUDA determining threads per block, blocks per grid - Stack Overflow](https://stackoverflow.com/questions/4391162/cuda-determining-threads-per-block-blocks-per-grid)
 
 ## CPU / GPU data transfer
 
@@ -57,13 +80,25 @@ cudaFree(data);
 
 ## Shared memory, global memory and unified memory
 
-````c++
+### Unified memory
 
-````
+Can be accessed from the CPU and GPU. Is simpler to use with the cost of efficiency. Use ``cudaMallocManaged`` to initialize. 
 
+### Global Memory
 
+Is stored on the device, can be copied back from the device to the host. Access to global memory is generally faster when not random. ``CudaMalloc`` gives you global memory.
 
+### Shared Memory
 
+Only lives until a block of kernel finishes. Cannot be copied from host or back to host. Is around 10^3 faster than global memory. I used to avoid copying data from global memory multiple times. Can be initialized using ``__shared__ int var``. Only shareable among one block.
+
+### Private memory
+
+There also exists the per thread private memory which is simply initialized by calling ``int var``
+
+## The CUDA memory model
+
+![Cuda Memory model](../img/cuda_memory.png "Cuda Memory Model")
 
 ## Atomic operators
 
@@ -72,4 +107,10 @@ Can be used everywhere, where the memory is accessible. Guarantee race condition
 ````c++
 atomicAdd(float * adress, int value);
 ````
+
+## Reductions
+
+[CUDA Webinar 2 (nvidia.com)](https://developer.download.nvidia.com/assets/cuda/files/reduction.pdf)
+
+
 
