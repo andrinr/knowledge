@@ -53,6 +53,8 @@ int stride = blockDim.x;
 
 ## CPU / GPU data transfer
 
+### Arrays
+
 ````c++
 # Declare a pointer
 int *data;
@@ -78,6 +80,21 @@ cudaMemcpy(h_data, d_data, N*sizeof(int), cudaMemcpyDeviceToHost);
 cudaFree(data);
 ````
 
+### Single values
+
+````c++
+int h_answer;
+int* d_answer;
+
+cudaMalloc(&d_answer, sizeof(int));
+
+cudaMemcpy(&h_answer, d_answer, sizeof(int), cudaMemcpyHostToDevice); 
+
+cudaMemcpy(&h_answer, d_answer, sizeof(int), cudaMemcpyDeviceToHost); 
+````
+
+c
+
 ## Shared memory, global memory and unified memory
 
 ### Unified memory
@@ -92,6 +109,16 @@ Is stored on the device, can be copied back from the device to the host. Access 
 
 Only lives until a block of kernel finishes. Cannot be copied from host or back to host. Is around 10^3 faster than global memory. I used to avoid copying data from global memory multiple times. Can be initialized using ``__shared__ int var``. Only shareable among one block.
 
+```c++
+__shared__ int var;
+// an array:
+__shared__ int var[N];
+// without memory allocation
+extern __shared__ int var[];
+```
+
+
+
 ### Private memory
 
 There also exists the per thread private memory which is simply initialized by calling ``int var``
@@ -102,7 +129,7 @@ There also exists the per thread private memory which is simply initialized by c
 
 ## Atomic operators
 
-Can be used everywhere, where the memory is accessible. Guarantee race condition arithmetic operations.
+Can be used everywhere, where the memory is accessible. Guarantees race condition free arithmetic operations.
 
 ````c++
 atomicAdd(float * adress, int value);
@@ -111,6 +138,20 @@ atomicAdd(float * adress, int value);
 ## Reductions
 
 [CUDA Webinar 2 (nvidia.com)](https://developer.download.nvidia.com/assets/cuda/files/reduction.pdf)
+
+## Debugging
+
+Best practice, scale up parallelization slowly, use asserts inside kernel:
+
+````c++
+#include <assert.h>
+
+__global__ void func(){
+    assert(x > 0)
+}
+````
+
+
 
 
 

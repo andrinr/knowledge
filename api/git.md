@@ -71,3 +71,13 @@ git rm --cached -r .idea
 ````bash
 git remote set-url origin <url>
 ````
+
+
+
+## Merge local commits
+
+Where N is the number of local commits you want to merge.
+
+```
+git rebase -i HEAD~N
+```

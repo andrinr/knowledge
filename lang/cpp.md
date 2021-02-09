@@ -117,3 +117,16 @@ int arr[100];
 
 ````
 
+
+
+# Bit operations
+
+````cpp
+// Shift
+int a = 16;
+int b = a << 1;
+// b = 8
+
+
+````
+
