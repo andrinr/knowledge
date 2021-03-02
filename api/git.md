@@ -81,3 +81,13 @@ Where N is the number of local commits you want to merge.
 ```
 git rebase -i HEAD~N
 ```
+
+
+
+## Commited a too big file?
+
+Magic:
+
+```bash
+git filter-branch --index-filter "git rm -rf --cached --ignore-unmatch path_to_file" HEAD
+```
