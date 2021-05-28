@@ -98,6 +98,13 @@ This program will output:
 2
 ````
 
+### Vectors
+
+````
+std::vector<type> name;
+
+````
+
 
 
 ### Double pointers
