@@ -25,6 +25,9 @@ ls *.<end>
 
 # current linux version
 hostnamectl
+
+# check file site
+du -hs <directory>
 ````
 
 ```bash
@@ -33,6 +36,8 @@ export PS1="\[\033[95m\]\u@\h \[\033[32m\]\W\[\033[33m\] [\$(git symbolic-ref --
 ```
 
 ### Screen management
+
+#### screen
 
 ````bash
 # start screen session:
@@ -48,6 +53,38 @@ ctrl + a, X
 # new prompt 
 ctrl + a, c
 ````
+
+#### tmux
+
+considered superior to screen
+
+Seshions:
+
+````{bash}
+# start tmux
+tmux
+# detach seshion
+Ctrl + b, d
+# come back to seshion
+tmux attach
+# change to next window
+c-b n
+# change to previous window 
+C-b p
+````
+
+Panes
+
+```{bash}
+# vertical split
+C-b %
+# horizontal split 
+C-b "
+# Navigate 
+C-b left | right | up | down
+```
+
+
 
 ### Execution
 
