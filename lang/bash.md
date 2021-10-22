@@ -58,14 +58,14 @@ ctrl + a, c
 
 considered superior to screen
 
-Seshions:
+Sessions:
 
 ````{bash}
 # start tmux
 tmux
-# detach seshion
+# detach session
 Ctrl + b, d
-# come back to seshion
+# come back to session
 tmux attach
 # change to next window
 c-b n
@@ -82,6 +82,11 @@ C-b %
 C-b "
 # Navigate 
 C-b left | right | up | down
+# close pane
+C-d
+# make pane fullscreen
+C-b z
+
 ```
 
 
