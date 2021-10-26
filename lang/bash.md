@@ -35,6 +35,14 @@ du -hs <directory>
 export PS1="\[\033[95m\]\u@\h \[\033[32m\]\W\[\033[33m\] [\$(git symbolic-ref --short HEAD 2>/dev/null)]\[\033[00m\]\$ "
 ```
 
+#### Xclip
+
+````bash
+sudo apt-get install xclip
+# usage
+cat file | xclip
+````
+
 ### Screen management
 
 #### screen
@@ -56,6 +64,8 @@ ctrl + a, c
 
 #### tmux
 
+[cheat sheet](https://tmuxcheatsheet.com/)
+
 considered superior to screen
 
 Sessions:
@@ -67,10 +77,17 @@ tmux
 Ctrl + b, d
 # come back to session
 tmux attach
+tmux a
 # change to next window
 c-b n
 # change to previous window 
 C-b p
+# list all sessions
+tmux ls
+# kill all session but cuurrent
+tmux kill-session -a
+# kill specific session
+tmux kill-session -t <number>
 ````
 
 Panes
@@ -101,10 +118,18 @@ program1 | program2 | program3
 program1 | more
 # or less, because less is more
 program1 | less
-
-# Pass parameters
-./script <param1> <param2>
 ````
+
+## Permissions
+
+```{bash}
+# User can read write and execute
+# Group can read and execute
+# Others can only read it
+chmod u=rwx,g=rx,o=r myfile
+```
+
+
 
 
 
@@ -117,7 +142,7 @@ wc -l <filename>
 
 
 
-### Variables
+### Variables & Arguments
 
 ````bash
 # Set a variable
@@ -128,6 +153,13 @@ $VARNAME
 
 # Test varibale
 echo $VARNAME
+
+# Pass parameters
+./script <param1> <param2>
+
+# Access parameters 1, 2
+echo $1
+echo $2
 ````
 
 
