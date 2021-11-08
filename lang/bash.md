@@ -28,6 +28,18 @@ hostnamectl
 
 # check file site
 du -hs <directory>
+
+# remove file
+rm <file>
+
+# remove directory
+rm <file> -rf
+
+# find files with specific ending and list them
+find . -name "*.json" -type f
+
+# find files with specific ending and delete them
+find . -name "*.bak" -type f -delete
 ````
 
 ```bash
@@ -164,7 +176,7 @@ echo $2
 
 
 
-## VIM
+## VIM / NEOVIM
 
 ### Navigation
 
@@ -218,6 +230,17 @@ ce
 
 ````
 
+### Visual mode
+
+```{bash}
+# Enter visual mode
+shift+v
+# go down with j or 2j
+y
+```
+
+
+
 ### Remapping
 
 ````bash
@@ -225,6 +248,15 @@ ce
 :imap jk <Esc>
 
 ````
+
+### Freeze
+
+```{bash}
+# Pressing C s can lead to a freeze then just press
+C q
+```
+
+
 
 ## Remote display
 

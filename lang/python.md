@@ -42,6 +42,17 @@ TO get pip dependencies in a text file:
 
 
 
+### Virtual ENV
+
+```{cmd}
+# Install env
+pip install virtualenv
+# Create new environment at given location
+virtualenv <path>
+# activate
+<path>\Scripts\activate
+```
+
 
 
 
