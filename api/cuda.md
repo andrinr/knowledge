@@ -8,14 +8,14 @@ or https://docs.nvidia.com/cuda/cuda-c-programming-guide/index.html
 
 ## Compile & run
 
-````bash
+```bash
 nvcc file.cu
 ./a.out
 ````
 
 ## Device code
 
-````c++
+```c++
 __global__ void function(){
 	
 }
