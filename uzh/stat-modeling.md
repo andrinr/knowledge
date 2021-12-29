@@ -243,5 +243,67 @@ varImpPlot(rf)
 rf2 = randomForest(response ~ a + b + c)
 ```
 
+### QA
+
+- LDA will fail when the discriminatory information lies in the variance and not the mean: T
+- LDA tries to model difference in classes, PCA does not take any differences into account: T
+- In RF individual trees are buit on a subset of features and observations: T
+- Given one very strong predictor, would you rather use bagging or random forest? RF
+- 
+
+## Linear Model
+
+```{r}
+# Classical linear model
+lm(predictor ~ responseA + responseB, data = data)
+# Linear model with explicitly defined intercept term
+lm(predictor ~ 1 + responseA + responseB, data = data)
+# Linear model with formulate applied to response variable
+# Note that the I() is necessary to bypass the meaning of operators in the context of the LM formula
+lm(predictor ~ responseA + I(responseB * 2))
+```
+
+
+
+### Assumptions
+
+- **Homoscedastic:** Var(error_i) = variance. Look at scale location plot, watch out for a horizontal line and equally spread points. 
+- **Independence:** Corr(error_i, error_j) = 0 for i not equal j
+- **Gaussian:** The errors are gaussian with a mean of 0. We can look at the QQ plot, if we see a more or less linear distribution, we can assume that the error are gaussian distributed.
+- **Linearity:** The regression model is linear in parameters. Look at residuals vs. fitted. Equally spread residuals without distinct patterns are a good indicator for a linear relationship.
+
+Residuals versus leverage helps us identify cases which have high leverage.
+
+### Leave on out for linear models
+
+What is the effect of the i-th obersvation on
+
+- the estimate
+- the prediction
+- the estimated standard errors
+
+````
+lm = lm(predictor ~ response1 + response2, data=data)
+influence.measures(lm)
+````
+
+### ANOVA
+
+Analysis of variance
+
+```{r}
+anova(lmA, lmB)
+```
+
+
+
+### Information Criterion
+
+Balances goodess of a fit with its complexity. 
+
+
+
+
+
 
 
