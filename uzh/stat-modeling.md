@@ -113,6 +113,13 @@ biplot(pca)
 
 Empirical Orthogonal Functions is when we apply a PCA onto for example a grid. Can be done identical, we simply need to transform the data from a 2D grid data into 1D array. 
 
+### QA
+
+- PCA can be used for projecting and visualizing data in lower dimensions: T
+- Max number of PC’s = number of features: T
+- All PC’s ar orthogonal to each other: T
+- What happens when eigenvalues are roughly equal? PCA will perform badly
+
 ___
 
 
@@ -125,13 +132,116 @@ Dissimilarity can be defined with different strategies.
 
 - **Single Linkage:** (Nearest neighbour linkage) will measure the distance between the two nearest samples from two groups.
 - **Complete Linkage:** (Furhest Neighbout linkage) will measure the distance between the two furthest samples from the two groups. 
-- **Ward Method:** 
+- **Ward Method:** In each step find the pair which leads to minimal increase in total within cluster variance.
+
+```{r}
+# hclust requries a dissimilary structure, in this case we will go with dist which computes the eulerian distance between all the rows of the input matrix
+hc1 = hclust(dist(matrix), method = "single")
+hc2 = hclust(dist(matrix), method = "complete")
+hc3 = hclust(dist(matrix), method = "ward.D")
+
+# We can plot the clustering like this:
+plot(hc1)
+
+# We can return a datastructure where each item is assigned to a cluster, provided number of clusters
+cut = cuttree(hc1, 6)
+
+# We can do the same visually like this:
+par(mfrow = c(1, 1))
+plot(hc1, xlab = "", sub = "")
+rect.hclust(hc1, k = 5, border = rainbow(6))
+```
+
+
 
 ### K-Means Clustering
 
-
-
-
+1. Start with k (random) cluster centers
+2. Assign obervations to the nearest center
+3. Recompute the centeres
+4. If centers remain the same, stop, otherwise repeat step 2.
 
 ### Model Based Clustering
+
+We assum that the data is a mixture of several clusters, this means that there are soft border between them. 
+
+### Assesing Quality
+
+Is unsupervised therefore measuring the quality is difficult. Cluster can easily be found in random data, and sometimes its hard to distinguish these from meaninungful clusters.
+
+- Shilouette plots indicate the nearest distance of each sample to the another cluster. Distances towards 1 are favourable, 0 or even negative may indicate wrong assignments. 
+
+### QA
+
+- Two runs of K-Means will have the same results: F
+- It is possible that the K-Means assignment does not change between two iterations: T
+- Clustering is unsupervised: T
+- K-Means automatically chooses an optimal number of clusters: F
+- Hier. Clustering depends on the linkeage method: T
+
+## Classification
+
+### Linear Discrimination
+
+We assume that both categories have a gaussian distribution. 
+
+In the linear case we assume for the distributions to have the same covariance matrices, only the means can vary. We have several distributions and we want to associate each sample to a distribution. The distributions are known, but the samples are intertwined, thus we have to use LDA to decide which sample can be associated with which distribution. 
+
+The discrimination line is at the point (in 2D) with the same densities.
+
+```{r}
+lda = lda(response ~ predictor1 + predictor2, data = data)
+```
+
+
+
+### Quadratic Discrimination
+
+In the quadratic case the distributions can have varying variances. In fact for all samples both variants can be applied but QDA performs than LDA with different variances.
+
+```{r}
+qda = qda(response ~ predictor1 + predictor2, data = data)
+```
+
+### Fishers Discriminant Rule
+
+It is identital to LDA when covariance matrices are equal. 
+
+### Classification Tree
+
+Actually pretty much the same as a K-D tree, but in this case we have more than 3 Dimensions.
+
+- Easy to understand, explain and visualize. 
+- Non robust method, 
+
+```{r}
+ct = ctree(response ~ ., data = data)
+# Plot it
+plot(ct)
+```
+
+
+
+### Bagging
+
+Use bootstrapping to create many training sets and for each of them create a new tree. Take the average for the final classification.
+
+### Boosting
+
+Similar to bagging but samples are associated with a weight which corresponds to the amount of missclassifications, with this the training will focus on hard cases.
+
+### Random Forest
+
+Similar to bagging but for each tree we choose a random subsample of the featutres, where k = sqrt(n). 
+
+```{r}
+rf = randomForest(response ~ ., data = data)
+plot(rf)
+
+# Optionally repeat rd with only most important features extracted with
+varImpPlot(rf)
+rf2 = randomForest(response ~ a + b + c)
+```
+
+
 
