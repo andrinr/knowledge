@@ -446,3 +446,27 @@ Fromt the summary of the glm in r we get the temp estime. Its value x will tell 
 
 
 
+### Logistic Inference
+
+We try to find information about the underlying distribution based on the data. We have E(Y_i) / n_i = p_i.
+
+### Poisson Regression
+
+With the poisson regression we can model count data. 
+
+```{r}
+glm = glm(y ~ x, family="poisson", data = data)
+```
+
+I the number of y is expected to follow a poisson distribution with Poisson(gamma = exp(intercept + x * x_point)). If Poisson(a) = E(a).
+
+For one unit change in x, the log of expected counts is expected to change by value. => Factor of e^value
+
+### Generalized Linear Model
+
+- Distribution of Y (Binomial, Poisson) ((Normal distribution for linear regression))
+- Linear function of predictors x_transposed * Beta
+- A function linking E(Y_i) = y_i and the predictors. (In linear regression this is the identity, in Binomial this is logit, in Poisson its log)
+
+### LM vs GLM
+
