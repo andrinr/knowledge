@@ -23,6 +23,19 @@ matrix(c(1:9), nrow=3)
 # 3 6 9
 ```
 
+## Dataframes
+
+```{r}
+# Convert wide to long
+# Paste creates an array of strings aggregated together and seppareted by sep
+library(reshape)
+term <- reshape(data, direction = "long", varying = paste("day", 1:15, sep = ""), v.names = "n.termites",
+timevar = "day", idvar = "dish"
+                
+# Combine df's, works when one or multiple columns are the same
+cbind(data1, data2)
+```
+
 
 
 ## Apply

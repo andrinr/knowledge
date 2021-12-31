@@ -251,7 +251,7 @@ rf2 = randomForest(response ~ a + b + c)
 - Given one very strong predictor, would you rather use bagging or random forest? RF
 - 
 
-## Linear Model
+## Linear Model (!)
 
 ```{r}
 # Classical linear model
@@ -282,28 +282,165 @@ What is the effect of the i-th obersvation on
 - the prediction
 - the estimated standard errors
 
-````
+````R
 lm = lm(predictor ~ response1 + response2, data=data)
 influence.measures(lm)
 ````
 
-### ANOVA
+### ANOVA (!)
 
 Analysis of variance
 
+```R
+# One way ANOVA
+# Test weather any of the group means are different from the overall mean of the data
+anova(lmA)
+```
+
+Variance that is not explained by the model is called residual variance. 
+
+- **Sum Sq:** Sum of squares, the total variation between the group means and the overall means
+- **Mean Sq:** Mean sum of squares, Sum Sq divided by degrees of freedom
+- **F-value:** The higher this value, the more likely the variation is caused by real effects and not by chance
+- **P-value:** Likelyhood of null hypothesis
+
 ```{r}
+# Two way ANOVA
 anova(lmA, lmB)
 ```
 
 
 
-### Information Criterion
+### Information Criterion (!)
 
 Balances goodess of a fit with its complexity. 
 
+### Standard Error
+
+The standard error of a variable is the same as the variance of its distribution.
+
+### Hypthesis testing for Estimators
+
+For example: H0: B_hat = 0
+
+Known: 
+
+B_hat = 15
+
+SE(B_hat) = 2
+
+n = 10
+
+```R
+(15 / 2) > qt(0.975, df = n - 3)
+```
+
+### QA
+
+- If we add a feature to a model, the r-squared value itself cannot make any statements about possible improvements of the new model over the old one. 
+- We have a LM with z having a p-value of 0.0001. Thus we can conclude that changing z by 1 will have a great impact on the value of y: F
+- LR is sensitive to outliers: T
+
+## Mixed Linear Model
+
+### Independency
+
+Is violated if: 
+
+- We heave repeated measures from the same individual
+- Hierarchical models
+- Longtidual setting, the experiment follows one subject ober an extended period of time
+
+Independency can falsely increase the accuracy of a model, even though this might not be true.
+
+### Random Effect vs Fixed Effect Model
+
+If we want to know more about the performance of the machines. Let us now conider the production time of three machines with random operators, the effect of the machines are fixed while the error term and the influence of the random operators are random. 
+
+On the other hand if we were to be interested in the performance of the operators, the model would be vice versa.
+
+For random effects we are more interested in the distribution of the variable itself, and less on the comparisons of values.
+
+```{r}
+library(lme4)
+# Random intercept (pred2)
+# Different starting points determined by pred2, but not different slopes determined by pred2
+lmer(response ~ pred1 + (1 | pred2) , data=data)
+# For longtidual data, where x is for example time and pred2 is the id of subjects for which we have multiple datapoints over time
+lmer(response ~ pred1 + (x | pred2) , data=data)
+```
+
+We can check weather a model is singular with ``isSingular(model)``. In a singular model the parameters are on the boundary of the feasible parameter space.
+
+### QA
+
+- We have measurements for a single patient over time, should we use a mixed model? F
+- 
+
+## Non Parametric Regression
+
+Datasets where linear models do not fit. Thus we extend the model to Y = g(x) + e, where e follows a normal distribution. In a parametric regression we are looking for the parameters of the function but the shape of the function is known. In a non parametric regression the general shape of the function is unknown.
+
+### Kernel Smoothing (Local estimation approach)
+
+The logic behind smoothing is that we estimate g to be a smoothed version of the sample points y.
+
+Kernel Functions must be: 
+
+- Symmetric around zero and positive
+- normalized, i.e. the integral will yield = 1
+- […]
+
+Examples for Kernels are:
+
+- Uniform
+- Triangle
+- Gauss
+- [..]
+
+Bandwith choice, the higher the gamma, the the smaller the kernel. 
+
+Kernel smoothers suffer from boundary bias, since there we have observation from one side only. 
+
+````R
+# The kernel, the higher the bandwith, the smoother the result
+m2 <- with(data, ksmooth(x, y, kernel = "normal / normal / box", bandwidth = 15))
+````
 
 
 
+### Local Polynomials (Local estimation approach)
+
+Often better at boundaries. Kernel approach cannot correctly fit a line. 
+
+```{r}
+lowess(x, y, f = 0.3, iter = 3, delta = 0)
+loess(x~y, span = 0.3, degree = 1, family = "symmetric", iterations = 4, surface = "direct")
+```
+
+### Splines
+
+Similar to local polynomials but tries to fit polynomial for each point seperatly. Smoothing is reached by reducing the number of knots. 
+
+```{R}
+m5 <- with(flies.noNA, smooth.spline(day, mort.rate, spar = 0.5))
+```
+
+### Locally adaptive methods
+
+Suited for function which require different smoothing behaviours for different segments of the data. 
+
+## Generalized Linear Models
+
+### Logistic Regression
+
+Model the probability of a certain event to happen. I.e. Pass/Fail, Win/Loose. We use the logistic function to model the probabilities. 
+
+```{r}
+glm = glm()
+```
+
+Instead of talking by certain factor of increase in y when we change position in x, instead we talk about a change in log odds. 
 
 
 
