@@ -430,6 +430,10 @@ m5 <- with(flies.noNA, smooth.spline(day, mort.rate, spar = 0.5))
 
 Suited for function which require different smoothing behaviours for different segments of the data. 
 
+### QA
+
+
+
 ## Generalized Linear Models
 
 ### Logistic Regression
@@ -468,5 +472,15 @@ For one unit change in x, the log of expected counts is expected to change by va
 - Linear function of predictors x_transposed * Beta
 - A function linking E(Y_i) = y_i and the predictors. (In linear regression this is the identity, in Binomial this is logit, in Poisson its log)
 
-### LM vs GLM
+Deviance, the higher, the worse the fit. Residual Deviance is the difference between the saturated model (ideal fit) and the fitted model. Another comparison is the null model which simply fits the null hypothesis. Null Deviance is the difference between the null model and the saturated model. 
 
+```R
+# Predict the outcome
+glm = predict(glm, new=data)
+# And its probabilities
+glm = predict(glm, new=data, type=response)
+```
+
+### Exponential Family of Distributions
+
+Poisson and Binomial Distributions fall into the category of exponential distributions. 
