@@ -122,8 +122,6 @@ Empirical Orthogonal Functions is when we apply a PCA onto for example a grid. C
 
 ___
 
-
-
 ## Clustering
 
 ### Hierarchical Clustering
@@ -484,3 +482,79 @@ glm = predict(glm, new=data, type=response)
 ### Exponential Family of Distributions
 
 Poisson and Binomial Distributions fall into the category of exponential distributions. 
+
+## Survival Analysis
+
+Model time till event. For example time till death, lifespan of a product etc. 
+
+Exponenital or Weibull distribution is used. Censoring is when the outcome for a patient is not availabe. 
+
+- We have the CDF of T. F(t). The cummulative distribution function.
+- We have the PDF of T. f(t). The probability density function.
+- The survival time T, a random variable with a distribution
+- Survivor Function: S(t) = P(T >= t), non increasing, approaches zero, 
+- The hazard rate: h(t) = P(t <= T < t + delta | T >= t) where delta approaches zero. The item has survived for a time t and we desire the probability that it will not survive another delta time.
+- Cumulative hazard function: H(t) = Integral from zero to t over h(u) du
+- h(t) = f(t) / S(t)
+- S(t) = exp(-H(t))
+
+### Weibull distribution
+
+![Weibull](../img/weibull.png)
+
+
+
+### Non parametric methods for survival analysis
+
+Kaplan Meier Kurve, essentially a step function which is a 1:1 fit of the data. 
+
+```R
+survfit(surv ~ t, data=data)
+```
+
+
+
+### Log Rank Test
+
+Used to compare different survival functions. 
+
+- n_1,k is the number of people not having had an event at time k. 
+- d_2,k is the number of events at time k.
+
+H0: The two groups have an identical hazard function.  h_1(t) = h_2(t). Under this circumstances we have:
+
+- Expected value for d_i,j: E_i,j = n_i,j * d_j / n_j
+
+```R
+survdiff(surv ~ t, data = data)
+```
+
+
+
+### Binomial vs. Hypergeometric
+
+- Both describe Number of times an event occurs in a fixed number of trials
+- Probability is the same for every trial in Binomial, for Hypergeometric distributions the probability changes with every trial as there is no replacement.
+
+### Parametric Modeling of Survivial Data
+
+We want to quantify the effects of covariates and make statemens about it. 
+
+We try to split the hazard function into a baseline component and a covariate effects component. 
+
+```R
+cox = coxph(surv ~ rx, data = data)
+summary(cox)
+```
+
+In the summary we can see the coef and the exp coef value. When the rx increases by 1, the hazard is hazard * exp coef value.
+
+```R
+# Formal statistical test
+cox.zph()
+# Graphical assesment
+plot(cox.zph())
+```
+
+## Time Series
+
