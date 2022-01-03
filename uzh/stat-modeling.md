@@ -69,6 +69,8 @@ train <- mtcars[train_ind, ]
 test <- mtcars[-train_ind, ]
 ```
 
+___
+
 
 
 ## PCA
@@ -177,6 +179,10 @@ Is unsupervised therefore measuring the quality is difficult. Cluster can easily
 - K-Means automatically chooses an optimal number of clusters: F
 - Hier. Clustering depends on the linkeage method: T
 
+___
+
+
+
 ## Classification
 
 ### Linear Discrimination
@@ -247,7 +253,10 @@ rf2 = randomForest(response ~ a + b + c)
 - LDA tries to model difference in classes, PCA does not take any differences into account: T
 - In RF individual trees are buit on a subset of features and observations: T
 - Given one very strong predictor, would you rather use bagging or random forest? RF
-- 
+
+___
+
+
 
 ## Linear Model (!)
 
@@ -373,7 +382,10 @@ We can check weather a model is singular with ``isSingular(model)``. In a singul
 ### QA
 
 - We have measurements for a single patient over time, should we use a mixed model? F
-- 
+
+___
+
+
 
 ## Non Parametric Regression
 
@@ -430,6 +442,8 @@ Suited for function which require different smoothing behaviours for different s
 
 ### QA
 
+___
+
 
 
 ## Generalized Linear Models
@@ -482,6 +496,10 @@ glm = predict(glm, new=data, type=response)
 ### Exponential Family of Distributions
 
 Poisson and Binomial Distributions fall into the category of exponential distributions. 
+
+___
+
+
 
 ## Survival Analysis
 
@@ -556,5 +574,52 @@ cox.zph()
 plot(cox.zph())
 ```
 
+___
+
+
+
 ## Time Series
 
+For time series there might be a dependence between variables, as a measurement x_i is dependant on x_i-1. Thus we want to plot the residual of x_i against x_i-1 for all observations. In R this looks something like this:
+
+```R
+plot( resids[-c(n,n-1)], resids[-c(1:2)])
+```
+
+### Autoregressive Model
+
+The current observation depends on the previous one. Y_t = a * Y_t-1 + e
+
+We can also extend this model by considering more previous datapoints, where we call the number of datapoints the order of the model. 
+
+```R
+ar(resid(lm), order= 2)
+```
+
+### Moving Average Model
+
+Present observation depends on a weighted average of white noise components: Y_t = e_t + a_0 * e_t-1 … a_q * e_t-q
+
+### ARMA Model
+
+Combined MA and AR model into ARMA  model.
+
+### Auto Correlative Function (ACF)
+
+
+
+## Spatial Statistics
+
+The covariance function c(v) is a function on a vector in the domain D. For example if we want to know the covariance between Z(s_1) and Z(s_2) we need to evalutate c(s_1 - s_2). 
+
+- If this function is related to the distance between the two points i.e.: || s_1 - s_2 || then it is called isotropic, otherwise its called anisotropic.
+
+- The difference H = s_1 - s_2 is called the spatial lag.
+
+  
+
+![iso_aniso](../img\isotropic_anisotropic.png)
+
+### Intrinsic Stationary
+
+A process is called intrinsic stationary if 
