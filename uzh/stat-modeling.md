@@ -618,8 +618,86 @@ The covariance function c(v) is a function on a vector in the domain D. For exam
 
   
 
-![iso_aniso](../img\isotropic_anisotropic.png)
+![iso_aniso](../img/isotropic_anisotropic.png)
 
 ### Intrinsic Stationary
 
-A process is called intrinsic stationary if 
+A process is called intrinsic stationary if E(Z(s_1)) = mean and Var(Z(s_1), Z(s_2)) = 1/2 * gamma(s_1 - s_2). 
+
+Gamma is a function of ||H|| only. 
+
+### Covariogram
+
+```R
+# Convert the data into long format
+sim.long <- cbind(expand.grid(x1 = 1:100, x2 = 1:100), z = c(sim1))
+# Fit a linear model
+m1 <- lm(z ~ x1 * x2, data = sim1.long)
+# create new dataframe
+vario_df <- cbind.data.frame(z_res = resid(m1), x1 = sim1.long$x1, x2 = sim1.long$x2)
+# Set coodinates
+coordinates(vario_df) <- ~x1 + x2
+# Create a covariogram
+plot(variogram(z_res ~ 1, vario_df, covariogram = T))
+```
+
+
+
+### Kriging Predictor
+
+- A Nugget effect model takes the average over all other points as estime, if the data point lies on top of a prediction we use the prediction instead.
+
+___
+
+
+
+## Extreme Value Theory
+
+We model the distribution of P(max(X_i) > m). 
+
+- In contrary to classical statistcs we do not model averages. 
+- In classical statistics central values are normal distrbited (CLT)
+- In extreme values the distribution of the maximas converges to the generalized extreme value distribution. 
+
+```R
+require(extRemes) 
+gevfit = fevd(data)
+summary(gevfit)
+```
+
+Where the shape will define the following distributions:
+
+- bigger than 0 : Frechet
+- Smaller than 0: Weibull
+- Equal 0: Gambel
+
+We can also inspect the fit visually:
+
+```R
+plot(gevfit, type="density")
+plot(gevfit, type="qq")
+plot(gevfit, type="prob")
+```
+
+### Modeling Peaks over thresholds
+
+Instead of modeling the maxima, which severely limits the datapoints, we can also model the peaks over threshold. In this case we have P(X - u > y | X > u)
+
+But in this case the limit theorem does not hold anymore. In this case the theoretical distribution is the generalized Pareto distribution. 
+
+```R
+gevfit = fevd(data, threeshold = 10)
+```
+
+### Threshold Selection for Modeling Peaks over thresholds
+
+- Mean residual life plot: 
+
+___
+
+## Neural Networks
+
+
+
+
+
