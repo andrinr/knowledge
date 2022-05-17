@@ -268,3 +268,10 @@ DISPLAY=localhost:0
 ssh -Y remote
 ````
 
+
+
+## Path
+
+Path variables can be loaded from numberous locationss. To name a frew of them ~/.profile ~/.bashrc
+
+display the path variable: ps -p $$  

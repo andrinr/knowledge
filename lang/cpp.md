@@ -126,14 +126,57 @@ int arr[100];
 
 
 
-# Bit operations
+## Bit operations
 
 ````cpp
 // Shift
 int a = 16;
 int b = a << 1;
 // b = 8
-
-
 ````
 
+
+
+## L and R values
+
+https://www.internalpointers.com/post/understanding-meaning-lvalues-and-rvalues-c
+
+```c++
+int x = 666; 
+// 666 is an r value. Has no specific memory address, stored on temporary register. 
+// x on the other hand is an l value, it does have a specific memory location. 
+```
+
+
+
+## Abstract classes
+
+We can define an abstract class, usually in the header file as follows:
+
+```c++
+class Bar {
+    virtual void foo() = 0;
+}
+```
+
+This function needs to be implemented in another header file which derives Bar also there needs to be a function definition. 
+
+
+
+## Void pointers
+
+Void pointers are essentially memory adresses where the datatype is not known. We can cast from a void pointer to a type as follows:
+
+```c++
+void foo(void * rawData) {
+    T data = *(struct T*)rawData;
+}
+```
+
+If we want to get a void pointer from typed data we can do the following:
+
+```c++
+void * rawData = &output;
+```
+
+Which is simply getting a pointer to the data.
