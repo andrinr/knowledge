@@ -98,16 +98,7 @@ This program will output:
 2
 ````
 
-### Vectors
-
-````
-std::vector<type> name;
-
-````
-
-
-
-### Double pointers
+#### Double pointers
 
 ````c++
 int *pointer;
@@ -116,9 +107,7 @@ int *doublePointer = &pointer;
 
 TODO: Why on earth do we need double pointers?? 
 
-
-
-### Void pointers
+#### Void pointers
 
 Void pointers are essentially memory adresses where the datatype is not known. We can cast from a void pointer to a type as follows:
 
@@ -138,7 +127,11 @@ Which is simply getting a pointer to the data.
 
 
 
-## Memory allocation
+#### Unique pointers
+
+TODO
+
+#### Vectors
 
 ````c++
 int var;
@@ -173,7 +166,7 @@ int x = 666;
 
 ### Rvalue references and move constructors
 
-A move constructor can take another datastructure and move its content without creating a deep copy.
+A move constructor can take another datastructure and move its content without creating a deep copy. More 
 
 ```c++
 std::auto_ptr <int> b (new int (10));

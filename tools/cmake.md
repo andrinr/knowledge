@@ -23,19 +23,19 @@ When using cuda this can now be set in the project command as follows:
 project(<projectName> VERSION 1.0 CXX CUDA )
 ```
 
-To add an external directory we first tell cmake to find it:
+To add an external directory we first tell cmake to find it. Cmake will search a lot of places for the library. The locations can be logged using ``cmake --debug-path``. 
 
 ```cmake
 find_package(blitz REQUIRED)
 ```
 
-We may provide cmake with additional hints: 
+In case we notice that cmake is unable to find the library, we may provide additional hints: 
 
 ```cmake
 set(blitz_DIR /usr/local/lib/cmake)
 ```
 
-We need to provide it the location of the <libname>Config.blitz file. 
+We need to provide it the location of the <libname>Config.blitz file.  
 
 
 
