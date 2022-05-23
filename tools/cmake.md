@@ -2,7 +2,7 @@
 
 CMake is a which generates makefiles, this can be used with various programming languages such as fortran, c, c++.
 
-1. touch CMakelists.txt
+1. touch CMakelists.txt --> write CMakelists.txt
 2. mkdir build & cd build
 3. cmake ..
 4. cmake --build .
@@ -35,7 +35,7 @@ In case we notice that cmake is unable to find the library, we may provide addit
 set(blitz_DIR /usr/local/lib/cmake)
 ```
 
-We need to provide it the location of the <libname>Config.blitz file.  
+We need to pass it the location of the <libname>Config.blitz file.  
 
 
 

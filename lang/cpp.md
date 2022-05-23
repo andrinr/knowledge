@@ -141,6 +141,48 @@ int arr[100];
 
 
 
+### Refereneces
+
+Now that we have pointers, why do we still need references?
+
+```c++
+// passes class Bar by reference and not by value
+void foo(Bar & b) {
+    return b.x;
+}
+```
+
+Usually a pointer is pretty much the same as a reference. The main difference is that we do not need to use the derefence operator.
+
+
+
+## Memory allocation
+
+```c++
+// static allocation, rather autmomatic allocation
+int number = 88;
+int * p1 = &number;
+
+// dynamic allocation
+int * p2;
+p2 = new int;
+
+// remove dynamically allocated space
+delete p2;
+
+// this also works for more complex types
+T * p3;
+p3 = new T(<arg>)
+```
+
+### Memory Leaks
+
+the infamous memory leaks.
+
+Happens when we use ``new`` to allocate memory, but we do not use ``delete`` to deallocate the memory. 
+
+But does this also happen when we use static memory allocation?
+
 ## Bit operations
 
 ````cpp
@@ -240,4 +282,83 @@ class Bar {
 ```
 
 This function needs to be implemented in another header file which derives Bar also there needs to be a function definition. 
+
+
+
+### (Pure) virtual functions
+
+```c++
+class A {
+    // a virtual function, need to be redefined by derived class
+    virtual void v();
+}
+```
+
+```c++
+class B {
+    // a pure virutal function, makes B an abstract class, means B cannot be instantiated
+    virtual void pv() = 0;
+}
+```
+
+
+
+
+
+## Templates
+
+```c++
+template<class T>
+class Bar {
+public:
+    T b;
+    Bar(T a) {
+        b = a;
+    }
+}
+```
+
+Or several explicityl defined template classes:
+
+```c++
+template<class T, class X>
+class Bar {
+public:
+    T b;
+    Bar(T a) {
+        b = a;
+    }
+    
+    X foo(X c) {
+        return X;
+    }
+}
+```
+
+Or applied to functions:
+
+```c++
+template<class T> void f(T a) {
+    std::cout << a << std::endl;
+}
+```
+
+
+
+### Variadic Templates or template packs
+
+```c++
+template<class ... Ts> void f(T a) {
+    std::cout << a << std::endl;
+}
+
+```
+
+TODO
+
+
+
+## Circular Dependcies
+
+Yes they are annoying. 
 
