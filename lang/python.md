@@ -48,9 +48,14 @@ TO get pip dependencies in a text file:
 # Install env
 pip install virtualenv
 # Create new environment at given location
-virtualenv <path>
+virtualenv <dir>
 # activate
-<path>\Scripts\activate
+. <dir>\bin\activate
+#deactivate 
+deactivate
+
+# install gui backend
+pip3 install Qt5Agg
 ```
 
 

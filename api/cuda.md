@@ -13,6 +13,15 @@ nvcc file.cu
 ./a.out
 ````
 
+Debug:
+
+```bas
+cuda-gdb a.out
+
+run
+backtrace
+```
+
 ## Device code
 
 ```c++
@@ -93,7 +102,15 @@ cudaMemcpy(&h_answer, d_answer, sizeof(int), cudaMemcpyHostToDevice);
 cudaMemcpy(&h_answer, d_answer, sizeof(int), cudaMemcpyDeviceToHost); 
 ````
 
-c
+
+
+## Synchronization
+
+Block level synchronization:
+
+```
+__syncthreads()
+```
 
 ## Shared memory, global memory and unified memory
 
