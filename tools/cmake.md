@@ -35,7 +35,7 @@ In case we notice that cmake is unable to find the library, we may provide addit
 set(blitz_DIR /usr/local/lib/cmake)
 ```
 
-We need to pass it the location of the <libname>Config.blitz file.  
+We need to pass it the location of the <libname>Config.cmake file.  
 
 
 
@@ -64,6 +64,18 @@ find_package(blitz REQUIRED)
 ```
 
 
+
+You can also link libraries like this:
+
+```bash
+ln -s /path/to/lib
+```
+
+Which will add a link to the folder where the library is located.
+
+We can then add the following line to CMake:
+
+```target_link_libraries(exec_name lib)```
 
 
 

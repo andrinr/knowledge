@@ -14,6 +14,12 @@ g++ -Wall -O -g file.cpp
 ./a.out
 ````
 
+Profile:
+
+Install Intel® VTune™ Profiler for Linux* OS 
+
+
+
 
 
 ## Pointers

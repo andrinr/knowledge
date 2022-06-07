@@ -22,6 +22,16 @@ run
 backtrace
 ```
 
+Profile:
+
+Install the nsight compute from nvidia developers.
+
+````
+ ~/nsight-systems-2022.2.1/bin/nsys-ui
+````
+
+
+
 ## Device code
 
 ```c++
