@@ -20,8 +20,6 @@ Install Intel® VTune™ Profiler for Linux* OS
 
 
 
-
-
 ## Pointers
 
 ````c++
@@ -309,6 +307,78 @@ class B {
 
 
 
+## Types & casting
+
+Implicit conversion:
+
+```c++
+int i = 10;
+float a = i;
+```
+
+Explicit conversion (Traditional):
+
+```c++
+int i = 10;
+float a = (float) i;
+```
+
+#### More explicit explicit conversions:
+
+Dynamic Cast, only used on pointers and references to objects. Makes sure that type conversion is valid.
+
+```c++
+class CBase { };
+class CDerived: public CBase { };
+
+CBase b; CBase* pb;
+CDerived d; CDerived* pd;
+
+pb = dynamic_cast<CBase*>(&d); // ok
+pd = dynamic_cast<CDerived*>(&b); // error
+```
+
+Static Cast, does not perform any safety checks. Thus programmer has to make sure that conversion is valid.
+
+```c++
+class CBase {};
+class CDerived: public CBase {};
+CBase * a = new CBase;
+CDerived * b = static_cast<CDerived*>(a) // ok
+```
+
+Reinterpret Cast, performs a simple binary copy. Can cast anything to anything.
+
+```c++
+class A {};
+class B {};
+A * a = new A;
+B * b = reinterpret_cast<B*>(a);
+```
+
+Const cast, can convert a const into a non const.
+
+```c++
+const int a = 10;
+
+
+void foo(int * x) {
+    return;
+}
+
+foo(const_cast<int *>(a));
+```
+
+### Typedefs
+
+Defines a typedef declaration.
+
+This typedef defines a type for an unsigned long.
+
+```c++
+typedef unsigned long ulong;
+```
+
 
 
 ## Templates
@@ -364,7 +434,7 @@ TODO
 
 
 
-## Circular Dependcies
+## Circular Dependencies
 
 Yes they are annoying. 
 
