@@ -283,6 +283,7 @@ We can define an abstract class, usually in the header file as follows:
 class Bar {
     virtual void foo() = 0;
 }
+
 ```
 
 This function needs to be implemented in another header file which derives Bar also there needs to be a function definition. 
