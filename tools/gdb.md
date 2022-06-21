@@ -14,11 +14,11 @@
 
 ``mpirun -np <x> gdb <exec> <params>``
 
-Or with   console for each process:
+Or with a console for each process:
 
 ``mpirun -np <x> xterm -e gdb <exec> <params>``
 
 Or run gdb on only one process:
 
-``mpiexec -n 1 gdb <exec> <params> m : -n <x-1> v``
+``mpiexec -n 1 gdb <exec> <params> m : -n <x-1> <exec> <params>``
 

@@ -30,6 +30,12 @@ Install the nsight compute from nvidia developers.
  ~/nsight-systems-2022.2.1/bin/nsys-ui
 ````
 
+Reset
+
+```
+sudo nvidia-smi --gpu-reset
+```
+
 
 
 ## Device code
