@@ -24,15 +24,17 @@ backtrace
 
 Profile:
 
-Install the nsight compute from nvidia developers.
+Install the nsight compute from nvidia developers. Can also be done remotely.
 
 ````
  ~/nsight-systems-2022.2.1/bin/nsys-ui
+ # for absolute file path:
+ readlink -f file.txt
 ````
 
 Reset
 
-```
+```bash
 sudo nvidia-smi --gpu-reset
 ```
 
